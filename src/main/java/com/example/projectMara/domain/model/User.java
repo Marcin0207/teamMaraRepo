@@ -42,11 +42,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Enum clientType;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name ="user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Rate> rateList;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orderList;
 }

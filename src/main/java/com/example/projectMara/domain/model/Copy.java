@@ -29,4 +29,8 @@ public class Copy {
 
     @ManyToMany(mappedBy = "copies")
     private List<Order> orderList;
+
+    @Column(name = "available")
+    private boolean available;
+
 }

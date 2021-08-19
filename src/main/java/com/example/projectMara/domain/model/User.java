@@ -1,7 +1,5 @@
 package com.example.projectMara.domain.model;
 
-import com.example.projectMara.domain.model.Order;
-import com.example.projectMara.domain.model.Rate;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,7 +38,7 @@ public class User {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private Enum clientType;
+    private OrderStatus clientType;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Rate> rateList;

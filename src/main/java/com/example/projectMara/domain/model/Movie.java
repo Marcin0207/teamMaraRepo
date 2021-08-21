@@ -32,7 +32,7 @@ public class Movie {
     private LocalDateTime createdAt;
 
     @Column(name = "avg_rate")
-    private float avgRate;
+    private double avgRate;
 
     @Column(name = "premiere_date")
     private LocalDate premiereDate;

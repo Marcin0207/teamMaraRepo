@@ -30,8 +30,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String address;
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -45,4 +45,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orderList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Adress> adressList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<OrderArchive> orderArchiveList;
+
 }

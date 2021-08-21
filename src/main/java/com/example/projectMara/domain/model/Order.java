@@ -30,14 +30,14 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+    @Column(name = "delivery_date", nullable = false)
+    private LocalDateTime deliveryDate;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<Copy> copiesList;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToMany
-    @JoinTable(name = "order_copy",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "copy_id")
-    )
-    List<Copy> copies;
 }

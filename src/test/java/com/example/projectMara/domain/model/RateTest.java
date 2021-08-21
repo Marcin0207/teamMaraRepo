@@ -79,10 +79,10 @@ class RateTest {
         movieDao.save(movie);
         userDao.save(user1);
 
-        foundRateOptional = rateDao.findById(0);
+        foundRateOptional = rateDao.findById(1);
         Assertions.assertThat(foundRateOptional.isPresent()).isTrue();
 
-        foundMovieOptional = movieDao.findById(0);
+        foundMovieOptional = movieDao.findById(1);
         Assertions.assertThat(foundMovieOptional.isPresent()).isTrue();
 
         Rate foundRate = foundRateOptional.get();

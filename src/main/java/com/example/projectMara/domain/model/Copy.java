@@ -20,17 +20,12 @@ public class Copy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column (name = "base_price", nullable = false)
-    private BigDecimal basePrice;
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
-
-    @ManyToMany(mappedBy = "copies")
-    private List<Order> orderList;
-
-    @Column(name = "available")
-    private boolean available;
 
 }

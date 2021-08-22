@@ -19,7 +19,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
+    @Column
     private String title;
 
     @Column
@@ -28,21 +28,21 @@ public class Movie {
     @Column
     private String description;
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private MovieStatus movieStatus;
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private MovieGenre movieGenre;
 
-    @Column(name = "created_at",nullable = false )
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @Column(name = "avg_rate")
     private double avgRate;
 
-    @Column(name = "premiere_date", nullable = false)
+    @Column(name = "premiere_date")
     private LocalDate premiereDate;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)

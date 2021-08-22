@@ -22,10 +22,10 @@ public class Copy {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private MovieOrder order;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id", nullable = false)
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
 }

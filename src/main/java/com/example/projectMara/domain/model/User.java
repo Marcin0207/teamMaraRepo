@@ -44,7 +44,7 @@ public class User {
     private List<Rate> rateList;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Order> orderList;
+    private List<MovieOrder> orderList;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Adress> adressList;

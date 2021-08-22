@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Order {
+public class MovieOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +30,14 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @Column(name = "delivery_date", nullable = false)
+    @Column(name = "delivery_date")
     private LocalDateTime deliveryDate;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<Copy> copiesList;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
 }

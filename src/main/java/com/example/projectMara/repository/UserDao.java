@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface UserDao extends CrudRepository<User, Integer> {
     Optional<User> findById(Integer id);
-
+    Optional<User> findByNickName(String nickName);
 }

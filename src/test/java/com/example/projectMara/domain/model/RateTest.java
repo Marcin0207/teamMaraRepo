@@ -69,7 +69,7 @@ class RateTest {
 
 
 
-        Optional<Rate> foundRateOptional = rateDao.findById(0);
+        Optional<Rate> foundRateOptional = rateDao.findById(1);
         Assertions.assertThat(foundRateOptional.isEmpty()).isTrue();
 
         Optional<Movie> foundMovieOptional = movieDao.findByTitle(movieTitle);

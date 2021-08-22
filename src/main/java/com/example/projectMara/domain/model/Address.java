@@ -17,8 +17,8 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "adress_name", nullable = false, length = 50)
-    private String adressName;
+    @Column(name = "address_name", nullable = false, length = 50)
+    private String addressName;
 
     @Column(nullable = false)
     private String country;

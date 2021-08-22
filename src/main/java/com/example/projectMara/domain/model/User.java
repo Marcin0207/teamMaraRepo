@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "Users")
 public class User {
 
     @Id
@@ -47,7 +48,7 @@ public class User {
     private List<Order> orderList;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Adress> adressList;
+    private List<Address> addressList;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<OrderArchive> orderArchiveList;

@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-
+@Table(name = "Copies")
 public class Copy {
 
     @Id

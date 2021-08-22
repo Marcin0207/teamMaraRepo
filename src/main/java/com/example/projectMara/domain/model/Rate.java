@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-
+@Table(name = "Rates")
 public class Rate {
 
     @Id

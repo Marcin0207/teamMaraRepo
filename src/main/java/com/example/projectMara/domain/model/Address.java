@@ -10,7 +10,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Adress {
+@Table(name = "Addresses")
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,3 +11,10 @@ INSERT INTO RATES (COMMENT,VALUE,MOVIE_ID,USER_ID) VALUES
   ('takie o, lepsze niż jedynka',6,1,1),
   ('no romantyczne takie nawet :)',8,2,1),
   ('o co w tym chodziło?',4,3,3);
+INSERT INTO ORDER_ARCHIVE (A_ORDER_ID,A_MOVIE_ID,USER_ID,ORDER_CREATED_AT,FINAL_PRICE) VALUES
+  (1,1,2,'2001-04-11 09:31:15',30),
+  (1,2,2,'2001-04-11 09:31:15',30),
+  (1,3,2,'2001-04-11 09:31:15',30),
+  (2,1,1,'2001-05-25 09:31:15',20),
+  (2,2,1,'2001-05-25 09:31:15',20),
+  (3,3,3,'2001-05-25 09:31:15',10);

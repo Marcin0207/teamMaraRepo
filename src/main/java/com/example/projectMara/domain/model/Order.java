@@ -14,7 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class MovieOrder {
+@Table(name = "Orders")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

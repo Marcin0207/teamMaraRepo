@@ -4,8 +4,6 @@ package com.example.projectMara.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 @Builder
@@ -22,7 +20,7 @@ public class Copy {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private MovieOrder order;
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")

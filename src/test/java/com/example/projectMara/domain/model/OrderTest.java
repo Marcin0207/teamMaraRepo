@@ -1,7 +1,7 @@
 package com.example.projectMara.domain.model;
 
 import com.example.projectMara.repository.CopyDao;
-import com.example.projectMara.repository.MovieOrderDao;
+import com.example.projectMara.repository.OrderDao;
 import com.example.projectMara.repository.UserDao;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,10 +17,10 @@ import java.util.Optional;
 
 @DataJpaTest
 
-class MovieOrderTest {
+class OrderTest {
 
     @Autowired
-    private MovieOrderDao movieOrderDao;
+    private OrderDao orderDao;
 
     @Autowired
     private UserDao userDao;
@@ -40,7 +40,7 @@ class MovieOrderTest {
                 .createdAt(LocalDateTime.now())
                 .build();
 
-        MovieOrder order1 = MovieOrder.builder().createdAt(LocalDateTime.now())
+        Order order1 = Order.builder().createdAt(LocalDateTime.now())
                 .price(BigDecimal.valueOf(10))
                 .orderStatus(OrderStatus.RETURNED_AND_PAID)
                 .build();
@@ -63,7 +63,7 @@ class MovieOrderTest {
         List<Copy> copies = new ArrayList<>();
         copies.add(copy);
 
-        List<MovieOrder> orders = new ArrayList<>();
+        List<Order> orders = new ArrayList<>();
         orders.add(order1);
 
         order1.setCopiesList(copies);
@@ -71,7 +71,7 @@ class MovieOrderTest {
         user1.setOrderList(orders);
         copy.setOrder(order1);
 
-        Optional<MovieOrder> foundMovieOrderOptional = movieOrderDao.findById(1);
+        Optional<Order> foundMovieOrderOptional = orderDao.findById(1);
         Assertions.assertThat(foundMovieOrderOptional.isEmpty()).isTrue();
 
         Optional<User> foundUserOptional = userDao.findByNickName("Wieszczu");
@@ -82,12 +82,12 @@ class MovieOrderTest {
 
         //when
 
-        movieOrderDao.save(order1);
+        orderDao.save(order1);
         //userDao.save(user1);
         order1.getUser().getNickName();
         System.out.println("########" + order1.getUser().getNickName());
 
-        foundMovieOrderOptional = movieOrderDao.findById(1);
+        foundMovieOrderOptional = orderDao.findById(1);
         Assertions.assertThat(foundMovieOrderOptional.isPresent()).isTrue();
 
         foundUserOptional = userDao.findById(1);

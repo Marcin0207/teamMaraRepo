@@ -11,17 +11,17 @@ INSERT INTO MOVIES (AVG_RATE,DESCRIPTION,DIRECTOR,MOVIE_GENRE,PREMIERE_DATE,TITL
 
 INSERT INTO COPIES (MOVIE_ID, ORDER_ID) VALUES
 
-('1','1'),
-('2','1'),
-('3','1');
+(1,1),
+(2,1),
+(3,1);
 
 INSERT INTO COPIES (MOVIE_ID) VALUES
 
-('1'),
-('1'),
-('2'),
-('2'),
-('2'),
-('3'),
-('3'),
-('2');
+(1),
+(1),
+(2),
+(2),
+(2),
+(3),
+(3),
+(2);

@@ -1,8 +1,8 @@
 package com.example.projectMara.domain.model;
 
-import com.example.projectMara.repository.CopyDao;
-import com.example.projectMara.repository.OrderDao;
-import com.example.projectMara.repository.UserDao;
+import com.example.projectMara.adapter.repository.CopyDao;
+import com.example.projectMara.adapter.repository.OrderDao;
+import com.example.projectMara.adapter.repository.UserDao;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

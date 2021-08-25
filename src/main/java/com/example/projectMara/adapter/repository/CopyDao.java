@@ -1,4 +1,4 @@
-package com.example.projectMara.repository;
+package com.example.projectMara.adapter.repository;
 
 import com.example.projectMara.domain.model.Copy;
 import org.springframework.data.repository.CrudRepository;

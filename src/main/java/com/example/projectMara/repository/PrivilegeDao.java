@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface PrivilegeDao extends CrudRepository<Privilege,Integer> {
 
     Optional<Privilege> findById(Integer id);
-    Optional<Privilege> findByName(String name);
+    Privilege findByName(String name);
 
 }

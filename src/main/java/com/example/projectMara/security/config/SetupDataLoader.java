@@ -9,10 +9,12 @@ import com.example.projectMara.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -33,6 +35,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Override
@@ -58,6 +63,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         user.setEmail("test@test.com");
         user.setRoles(Arrays.asList(adminRole));
         user.setEnabled(true);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setNickName("TEST");
+        user.setPhoneNumber("666666666");
         userRepository.save(user);
 
         alreadySetup = true;
@@ -65,7 +73,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     @Transactional
     Privilege createPrivilegeIfNotFound(String name) {
 
-        Privilege privilege = privilegeRepository.findByName(name).get();
+        Privilege privilege = privilegeRepository.findByName(name);
         if (privilege == null) {
             privilege = new Privilege(name);
             privilegeRepository.save(privilege);

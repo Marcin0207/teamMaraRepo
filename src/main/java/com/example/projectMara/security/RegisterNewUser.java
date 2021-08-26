@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 @Service
 public class RegisterNewUser {
@@ -35,6 +36,9 @@ public class RegisterNewUser {
         user.setEmail(accountDto.getEmail());
 
         user.setRoles(Arrays.asList(roleDao.findByName("ROLE_USER")));
+        user.setCreatedAt(LocalDateTime.now());
+        user.setNickName(accountDto.getNickName());
+        user.setPhoneNumber(accountDto.getPhoneNumber());
         return userDao.save(user);
     }
 

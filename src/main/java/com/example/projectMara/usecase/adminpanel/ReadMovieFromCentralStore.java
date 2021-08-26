@@ -17,7 +17,7 @@ public class ReadMovieFromCentralStore {
         return movieDao.findByTitle(title).get();
     }
     public Movie readById(Integer id){
-        return movieDao.findById(id).get();
+        return movieDao.findById(id).get() ;
     }
 
 }

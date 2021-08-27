@@ -39,10 +39,10 @@ public class User {
     private LocalDateTime createdAt;
 
     @Column
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column
-    private boolean tokenExpired;
+    private Boolean tokenExpired;
 
     @Column
     @Enumerated(EnumType.STRING)

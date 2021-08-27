@@ -24,7 +24,6 @@ public class MovieMapper {
     }
     public static Movie map(MovieDto movieDto){
         return Movie.builder()
-                .id(movieDto.getId())
                 .title(movieDto.getTitle())
                 .director(movieDto.getDirector())
                 .movieStatus(movieDto.getMovieStatus())
@@ -32,7 +31,6 @@ public class MovieMapper {
                 .premiereDate(movieDto.getPremiereDate())
                 .description(movieDto.getDescription())
                 .build();
-
 
     }
     public static List<MovieDto> mapList(List<Movie> movieList){
@@ -42,6 +40,5 @@ public class MovieMapper {
 
         return movieDtoList;
     }
-
 
 }

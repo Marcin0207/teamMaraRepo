@@ -1,6 +1,5 @@
-package com.example.projectMara.repository;
+package com.example.projectMara.adapter.repository;
 
-import com.example.projectMara.domain.model.Movie;
 import com.example.projectMara.domain.model.Rate;
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,7 +1,7 @@
 package com.example.projectMara.domain.model;
 
-import com.example.projectMara.repository.CopyDao;
-import com.example.projectMara.repository.MovieDao;
+import com.example.projectMara.adapter.repository.CopyDao;
+import com.example.projectMara.adapter.repository.MovieDao;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest //
 class MovieTest {

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -38,8 +39,14 @@ public class User {
     private LocalDateTime createdAt;
 
     @Column
+    private boolean enabled;
+
+    @Column
+    private boolean tokenExpired;
+
+    @Column
     @Enumerated(EnumType.STRING)
-    private OrderStatus clientType;
+    private ClientType clientType;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Rate> rateList;
@@ -52,5 +59,15 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<OrderArchive> orderArchiveList;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 
 }

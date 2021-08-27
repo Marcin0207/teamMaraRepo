@@ -1,6 +1,5 @@
 package com.example.projectMara.adapter.dto;
 
-
 import com.example.projectMara.domain.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,7 +32,6 @@ public class UserDto {
     private List<Address> addressList;
     private List<OrderArchive> orderArchiveList;
     private Collection<Role> roles;
-
 
 
 }

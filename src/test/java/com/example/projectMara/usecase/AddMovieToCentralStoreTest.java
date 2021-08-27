@@ -1,5 +1,6 @@
 package com.example.projectMara.usecase;
 
+import com.example.projectMara.adapter.dto.MovieDto;
 import com.example.projectMara.domain.model.Movie;
 import com.example.projectMara.domain.model.MovieGenre;
 import com.example.projectMara.domain.model.MovieStatus;
@@ -28,10 +29,10 @@ class AddMovieToCentralStoreTest {
     @Autowired
     private ReadMovieFromCentralStore readMovieByTitleFromCentralStore;
 
-    Movie movie;
+    MovieDto movie;
     @BeforeEach
     void createMovie() {
-         movie = Movie.builder().title("Harry Potter i Komnata Tajemnic 3")
+         movie = MovieDto.builder().title("Harry Potter i Komnata Tajemnic 3")
                 .movieGenre(MovieGenre.FANTASY)
                 .movieStatus(MovieStatus.CLASSIC)
                 .description("W Hogwarcie dochodzi do tajemniczych ataków na uczniów.")
@@ -48,8 +49,8 @@ class AddMovieToCentralStoreTest {
         //given
 
         //when
-        Movie newMovie = addMovieToCentralStore.add(movie);
-        Movie readMovie = readMovieByTitleFromCentralStore.readByTitle(movie.getTitle());
+        MovieDto newMovie = addMovieToCentralStore.add(movie);
+        MovieDto readMovie = readMovieByTitleFromCentralStore.readByTitle(movie.getTitle());
 
         //then
         Assertions.assertAll(
@@ -61,7 +62,7 @@ class AddMovieToCentralStoreTest {
     @Test
     void shouldThrowExceptionIfMovieExists() throws MovieAlreadyPresentException {
 
-        Movie movie2 = Movie.builder().title("Harry Potter i Komnata Tajemnic 3")
+        MovieDto movie2 = MovieDto.builder().title("Harry Potter i Komnata Tajemnic 3")
                 .movieGenre(MovieGenre.FANTASY)
                 .movieStatus(MovieStatus.CLASSIC)
                 .description("W Hogwarcie dochodzi do tajemniczych ataków na uczniów.")
@@ -70,7 +71,7 @@ class AddMovieToCentralStoreTest {
                 .director("Chris Columbus")
                 .build();
         //when
-        Movie newMovie = addMovieToCentralStore.add(movie);
+        MovieDto newMovie = addMovieToCentralStore.add(movie);
 
         assertThatExceptionOfType(MovieAlreadyPresentException.class).isThrownBy(()->addMovieToCentralStore.add(movie2));
 

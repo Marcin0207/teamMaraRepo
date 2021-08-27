@@ -1,9 +1,9 @@
 package com.example.projectMara.security;
 
 import com.example.projectMara.adapter.dto.UserDto;
+import com.example.projectMara.adapter.repository.UserDao;
 import com.example.projectMara.domain.model.User;
-import com.example.projectMara.repository.RoleDao;
-import com.example.projectMara.repository.UserDao;
+import com.example.projectMara.adapter.repository.RoleDao;
 import com.example.projectMara.security.exceptions.EmailExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

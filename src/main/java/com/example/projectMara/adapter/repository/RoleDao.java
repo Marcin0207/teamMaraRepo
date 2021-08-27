@@ -1,4 +1,4 @@
-package com.example.projectMara.repository;
+package com.example.projectMara.adapter.repository;
 
 import com.example.projectMara.domain.model.Role;
 import com.example.projectMara.domain.model.User;

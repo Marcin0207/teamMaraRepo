@@ -1,11 +1,11 @@
 package com.example.projectMara.security.config;
 
+import com.example.projectMara.adapter.repository.UserDao;
 import com.example.projectMara.domain.model.Privilege;
 import com.example.projectMara.domain.model.Role;
 import com.example.projectMara.domain.model.User;
-import com.example.projectMara.repository.PrivilegeDao;
-import com.example.projectMara.repository.RoleDao;
-import com.example.projectMara.repository.UserDao;
+import com.example.projectMara.adapter.repository.PrivilegeDao;
+import com.example.projectMara.adapter.repository.RoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;

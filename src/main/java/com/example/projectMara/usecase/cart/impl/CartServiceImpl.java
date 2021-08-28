@@ -47,6 +47,12 @@ public class CartServiceImpl implements CartService {
         } else {
             movies.add(movie);
         }
+        for (Movie movie1:movies) {
+            System.out.println(
+                    movie1.getTitle()
+            );
+
+        }
     }
 
     /**

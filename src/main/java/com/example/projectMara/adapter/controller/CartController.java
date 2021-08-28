@@ -26,7 +26,7 @@ public class CartController {
     @GetMapping("/cart")
     public ModelAndView cart() {
         ModelAndView modelAndView = new ModelAndView("/cart");
-        modelAndView.addObject("copies", cartService.getMovieInCart());
+        modelAndView.addObject("movies", cartService.getMovieInCart());
         //modelAndView.addObject("total", cartService.getTotal().toString());
         return modelAndView;
     }

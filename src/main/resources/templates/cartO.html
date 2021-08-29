@@ -18,7 +18,7 @@
 
     <div class="alert alert-info" th:if="${outOfStockMessage}" th:utext="${outOfStockMessage}"></div>
 
-    <div class="panel-default well" th:each="movie : ${movies.get()}">
+    <div class="panel-default well" th:each="movie : ${movies}">
         <div class="panel-heading">
             <h1><a th:text="${movie.title}" th:href="@{'/movie/' + ${movie.id}}">Title</a></h1>
             <h3 th:text="${movie.description}">Description</h3>

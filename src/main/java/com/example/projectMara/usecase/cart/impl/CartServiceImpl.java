@@ -70,7 +70,7 @@ public class CartServiceImpl implements CartService {
 
 
     /**
-     * @return unmodifiable movie of the map
+     * @return unmodifiable movie of the list
      */
     @Override
     public List<Movie> getMovieInCart() {

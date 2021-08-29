@@ -1,13 +1,10 @@
 package com.example.projectMara.usecase.cart.util;
 
 
-import com.example.projectMara.domain.model.Copy;
+
 import com.example.projectMara.domain.model.Movie;
 import org.springframework.data.domain.Page;
 
-/**
- * @author Dusan Raljic
- */
 public class Pager {
 
     private final Page<Movie> movies;

@@ -3,47 +3,46 @@ package com.example.projectMara.adapter.controller;
 
 import com.example.projectMara.usecase.cart.CartService;
 import com.example.projectMara.usecase.cart.MovieService;
-import com.example.projectMara.usecase.cart.exception.NotEnoughCopiesInStockException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@RestController
+@RequiredArgsConstructor
 public class CartController {
 
+    @Autowired
     private final CartService cartService;
-
+    @Autowired
     private final MovieService movieService;
 
-    @Autowired
-    public CartController(CartService cartService, MovieService movieService) {
-        this.cartService = cartService;
-        this.movieService = movieService;
-    }
 
-    @GetMapping("/cart")
+
+    @GetMapping("cartO")
     public ModelAndView cart() {
-        ModelAndView modelAndView = new ModelAndView("/cart");
+        ModelAndView modelAndView = new ModelAndView("/cartO");
         modelAndView.addObject("movies", cartService.getMovieInCart());
         //modelAndView.addObject("total", cartService.getTotal().toString());
         return modelAndView;
     }
 
-    @GetMapping("/cart/addMovie/{movieId}")
+    @GetMapping("cartO/addMovie/{movieId}")
     public ModelAndView addMovieToCart(@PathVariable("movieId") Integer movieId) {
         movieService.findById(movieId).ifPresent(cartService::addMovie);
         return cart();
     }
 
-    @GetMapping("/cart/removeMovie/{movieId}")
+    @GetMapping("cartO/removeMovie/{movieId}")
     public ModelAndView removeMovieFromCart(@PathVariable("movieId") Integer movieId) {
         movieService.findById(movieId).ifPresent(cartService::removeMovie);
         return cart();
     }
 
-  /*  @GetMapping("/cart/checkout")
+  /*  @GetMapping("/cartO/checkout")
     public ModelAndView checkout() {
         try {
             cartService.checkout();

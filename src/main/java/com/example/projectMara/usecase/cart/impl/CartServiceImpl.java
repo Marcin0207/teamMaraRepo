@@ -42,17 +42,25 @@ public class CartServiceImpl implements CartService {
      */
     @Override
     public void addMovie(Movie movie) throws AddingMovieDuplicateException {
-        if (movies.contains(movie)) {
+        for (Movie movie2 : movies) {
+            if (movie2.getTitle() == movie.getTitle()) {
+                throw new AddingMovieDuplicateException(movie.getTitle());
+            }
+        }
+            movies.add(movie);
+        /*if (movies.contains(movie)) {
             throw new AddingMovieDuplicateException(movie.getTitle());
         } else {
             movies.add(movie);
-        }
-        for (Movie movie1:movies) {
-            System.out.println(
-                    movie1.getTitle()
-            );
+        }*/
+            System.out.println("Koszyk:");
+            for (Movie movie1 : movies) {
+                System.out.println("-" +
+                        movie1.getTitle()
+                );
 
-        }
+            }
+
     }
 
     /**

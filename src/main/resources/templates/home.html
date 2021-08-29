@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="/header :: header"/>
+</head>
+
+<body>
+
+<div th:replace="/header :: navbar"/>
+
+<div class="container">
+
+    <div th:replace="/products :: movies"/>
+
+    <div th:replace="/pagination :: pagination(URLparameter='/home')"/>
+
+</div>
+
+<div th:replace="/footer :: footer"/>
+
+</body>
+</html>

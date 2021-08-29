@@ -63,9 +63,8 @@ public class CartServiceImpl implements CartService {
      */
     @Override
     public void removeMovie(Movie movie) {
-        if (movies.contains(movie)) {
-            movies.remove(movie);
-        }
+            movies.remove(movie.getId());
+
     }
 
 

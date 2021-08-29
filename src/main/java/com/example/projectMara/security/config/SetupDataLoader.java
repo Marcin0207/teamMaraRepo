@@ -62,7 +62,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         user.setPassword(passwordEncoder.encode("test"));
         user.setEmail("test@test.com");
         user.setRoles(Arrays.asList(adminRole));
-        user.setEnabled(true);
         user.setCreatedAt(LocalDateTime.now());
         user.setNickName("TEST");
         user.setPhoneNumber("666666666");

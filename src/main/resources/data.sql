@@ -1,7 +1,7 @@
 
 INSERT INTO USERS (FULL_NAME,NICK_NAME,CLIENT_TYPE,EMAIL,PASSWORD,PHONE_NUMBER, CREATED_AT) VALUES
 
-    ('Marcin Wozniak','XYZ','GOLD','marcin0207@gmail.com','abc','665 694 088','2000-04-11 09:31:15'),
+    ('Marcin Wozniak','XYZ','GOLD','marcin0207@gmail.com','$2a$10$bNc2gBD6P/1lsi4WlPQmPuTLzwwCeAo7NeMgD8qb5kFcyHWxL8PrO','665 694 088','2000-04-11 09:31:15'),
     ('Adam Mickiewicz','Wieszczu','SILVER','adammiszcz@wp.pl','def','444 444 444','2000-04-11 09:31:15'),
     ('Jan Nowak','Zajebisty669','SILVER','nowak7@gmail.com','zxc','555 555 555','2011-11-11 09:31:15');
 
@@ -51,3 +51,14 @@ INSERT INTO ORDER_ARCHIVE (A_ORDER_ID,A_MOVIE_ID,USER_ID,ORDER_CREATED_AT,FINAL_
   (2,1,1,'2001-05-25 09:31:15',20),
   (2,2,1,'2001-05-25 09:31:15',20),
   (3,3,3,'2001-05-25 09:31:15',10);
+
+
+ INSERT INTO ROLE (ID,NAME) VALUES
+    (1,'ROLE_ADMIN'),
+    (2,'ROLE_STAFF'),
+    (3,'ROLE_USER');
+
+ INSERT INTO USERS_ROLES (USER_ID, ROLE_ID) VALUES
+    (1,1),
+    (2,3),
+    (2,3);

@@ -1,9 +1,13 @@
 package com.example.projectMara.domain.model;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "Users")
-public class User {
+public class User implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,9 +41,6 @@ public class User {
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
-
-    @Column
-    private Boolean enabled;
 
     @Column
     private Boolean tokenExpired;
@@ -69,5 +70,23 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
+
+
+
+    @Override public boolean isAccountNonExpired() {return true;}
+    @Override public boolean isAccountNonLocked() {return true;}
+    @Override public boolean isCredentialsNonExpired() {return true;}
+    @Override public boolean isEnabled() {return true;}
+
+
+    @Override
+    public String getUsername() {
+        return nickName;
+    }
+
+    @Override public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+    }
 
 }

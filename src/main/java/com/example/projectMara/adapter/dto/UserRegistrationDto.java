@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -15,23 +17,31 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
-public class UserDto {
+public class UserRegistrationDto {
 
-    private int id;
+    @NotNull
+    @NotEmpty
     private String fullName;
+
+    @NotNull
+    @NotEmpty
     private String nickName;
+
+    @NotNull
+    @NotEmpty
     private String email;
-    private String password;
+
+    @NotNull
+    @NotEmpty
     private String phoneNumber;
-    private boolean enabled;
-    private boolean tokenExpired;
-    private LocalDateTime createdAt;
-    private ClientType clientType;
-    private List<Rate> rateList;
-    private List<Order> orderList;
-    private List<Address> addressList;
-    private List<OrderArchive> orderArchiveList;
-    private Collection<Role> roles;
+
+    @NotNull
+    @NotEmpty
+    private String password;
+
+    @NotNull
+    @NotEmpty
+    private String matchingPassword;
 
 
 }

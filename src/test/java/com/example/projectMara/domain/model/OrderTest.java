@@ -74,8 +74,8 @@ class OrderTest {
         Optional<Order> foundMovieOrderOptional = orderDao.findById(1);
         Assertions.assertThat(foundMovieOrderOptional.isEmpty()).isTrue();
 
-        Optional<User> foundUserOptional = userDao.findByNickName("Wieszczu");
-        Assertions.assertThat(foundUserOptional.isEmpty()).isTrue();
+        User foundUserOptional = userDao.findByNickName("Wieszczu");
+        Assertions.assertThat(foundUserOptional).isNotNull();
 
         Optional<Copy> foundCopyOptional = copyDao.findById(1);
         Assertions.assertThat(foundCopyOptional.isEmpty()).isTrue();
@@ -90,8 +90,8 @@ class OrderTest {
         foundMovieOrderOptional = orderDao.findById(1);
         Assertions.assertThat(foundMovieOrderOptional.isPresent()).isTrue();
 
-        foundUserOptional = userDao.findById(1);
-        Assertions.assertThat(foundUserOptional.isPresent()).isTrue();
+        foundUserOptional = userDao.findById(1).get();
+        Assertions.assertThat(foundUserOptional).isNotNull();
 
         foundCopyOptional = copyDao.findById(1);
         Assertions.assertThat(foundCopyOptional.isPresent()).isTrue();

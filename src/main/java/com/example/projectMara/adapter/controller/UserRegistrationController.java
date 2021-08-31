@@ -45,7 +45,7 @@ public class UserRegistrationController {
 
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("newUser")
+    @PostMapping("create/newUser")
     public UserRegistrationDto add(@RequestBody UserRegistrationDto userRegistrationDto) {
         return this.registerNewUser.registerNewUserAccount(userRegistrationDto);
     }

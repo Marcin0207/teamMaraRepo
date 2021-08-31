@@ -1,5 +1,6 @@
 package com.example.projectMara.mappers;
 
+import com.example.projectMara.adapter.dto.UserLoginDto;
 import com.example.projectMara.adapter.dto.UserRegistrationDto;
 import com.example.projectMara.domain.model.User;
 import org.mapstruct.Mapper;
@@ -19,5 +20,5 @@ public interface UserMapper {
 
     @Mapping(source = "nickName", target = "nickName")
     @Mapping(ignore = true, target = "password")
-    UserRegistrationDto mapToUserLoginDto(User user);
+    UserLoginDto mapToUserLoginDto(User user);
 }

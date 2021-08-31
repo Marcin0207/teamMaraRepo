@@ -35,7 +35,7 @@ public class Address {
     @Column(name = "house_number", nullable = false)
     private String houseNumber;
 
-    @Column(name = "local_number", nullable = false)
+    @Column(name = "local_number")
     private String localNumber;
 
     @Column(name = "is_default", nullable = false)

@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,17 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class LoginUser {
 
-//    private  final SecurityConfiguration configuration;
-
-    //private final AuthenticationManager authenticationManager;
-
-   // private final AuthenticationManagerBuilder authenticationManagerBuilder;
-
+    public String getUsername(){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!! athorities "+((UserDetails) principal).getAuthorities());
+        } else {
+            username = principal.toString();
+        }
+        return username;
+    }
 
 
 }

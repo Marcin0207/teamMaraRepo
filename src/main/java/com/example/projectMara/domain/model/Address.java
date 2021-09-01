@@ -39,10 +39,10 @@ public class Address {
     private String localNumber;
 
     @Column(name = "is_default", nullable = false)
-    private boolean isDefault;
+    private Boolean isDefault;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
 }

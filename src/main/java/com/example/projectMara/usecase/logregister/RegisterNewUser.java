@@ -14,11 +14,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class RegisterNewUser {
 
     private final UserDao userDao;

@@ -7,8 +7,10 @@ import com.example.projectMara.domain.model.User;
 import com.example.projectMara.mappers.UserMapper;
 import com.example.projectMara.security.exceptions.EmailExistsException;
 import com.example.projectMara.security.exceptions.NickNameExistsException;
+import com.example.projectMara.usecase.logregister.exception.FullNameToLongException;
+import com.example.projectMara.usecase.logregister.exception.NickNameToLongException;
+import com.example.projectMara.usecase.logregister.exception.NullFieldsException;
 import lombok.AllArgsConstructor;
-import org.mapstruct.factory.Mappers;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +22,12 @@ import java.util.Arrays;
 public class RegisterNewUser {
 
     private final UserDao userDao;
-
     private final RoleDao roleDao;
-
     private final PasswordEncoder passwordEncoder;
-
     private final UserMapper userMapper;
 
-
     public UserRegistrationDto registerNewUserAccount(UserRegistrationDto userRegistrationDto)
-            throws EmailExistsException, NickNameExistsException {
+            throws EmailExistsException, NickNameExistsException, NickNameToLongException, FullNameToLongException, NullFieldsException {
 
         if (emailExist(userRegistrationDto.getEmail())) {
             throw new EmailExistsException
@@ -39,6 +37,7 @@ public class RegisterNewUser {
             throw new EmailExistsException
                     ("There is an account with that Nickname: " + userRegistrationDto.getNickName());
         }
+        checkData(userRegistrationDto);
 
         User user = new User();
 
@@ -53,7 +52,7 @@ public class RegisterNewUser {
         user.setCreatedAt(LocalDateTime.now());
 
         return userMapper.mapToUserRegistrationDto(userDao.save(user));
-      //  return Mappers.getMapper(userMapper).mapToUserRegistrationDto(userDao.save(user));
+        //  return Mappers.getMapper(userMapper).mapToUserRegistrationDto(userDao.save(user));
     }
 
     private boolean emailExist(String email) {
@@ -62,6 +61,18 @@ public class RegisterNewUser {
 
     private boolean nickNameExist(String nickName) {
         return userDao.existsByNickName(nickName);
+    }
+
+    private void checkData(UserRegistrationDto userRegistrationDto)
+            throws NullFieldsException, FullNameToLongException, NickNameToLongException {
+
+        if (userRegistrationDto.checkNull()) {
+            throw new NullFieldsException();
+        } else if (userRegistrationDto.fullNameToLong()) {
+            throw new FullNameToLongException();
+        } else if (userRegistrationDto.nickNameToLong()) {
+            throw new NickNameToLongException();
+        }
     }
 
 }

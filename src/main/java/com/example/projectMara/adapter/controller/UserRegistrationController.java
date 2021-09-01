@@ -9,6 +9,9 @@ import com.example.projectMara.security.exceptions.EmailExistsException;
 import com.example.projectMara.security.exceptions.NickNameExistsException;
 import com.example.projectMara.usecase.adminpanel.exception.MovieAlreadyPresentException;
 import com.example.projectMara.usecase.logregister.RegisterNewUser;
+import com.example.projectMara.usecase.logregister.exception.FullNameToLongException;
+import com.example.projectMara.usecase.logregister.exception.NickNameToLongException;
+import com.example.projectMara.usecase.logregister.exception.NullFieldsException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,25 @@ public class UserRegistrationController {
         log.error(hser.getRequestURI()+ " error: "  +ex.getMessage());
     }
 
+    @ExceptionHandler(NickNameToLongException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void handleNickNameToLong(HttpServletRequest hser, Exception ex){
+        log.error(hser.getRequestURI()+ " error: "  +ex.getMessage());
+    }
+
+    @ExceptionHandler(FullNameToLongException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void handleFullNameToLong(HttpServletRequest hser, Exception ex){
+        log.error(hser.getRequestURI()+ " error: "  +ex.getMessage());
+    }
+
+    @ExceptionHandler(NullFieldsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void handleNullFieldsException(HttpServletRequest hser, Exception ex){
+        log.error(hser.getRequestURI()+ " error: "  +ex.getMessage());
+    }
+
+
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("create/newUser")
@@ -50,8 +72,8 @@ public class UserRegistrationController {
         return this.registerNewUser.registerNewUserAccount(userRegistrationDto);
     }
 
-// thymeleaf
 
+// thymeleaf
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView registration() {

@@ -20,16 +20,17 @@ public class ChangeAddress {
 
     public AddressDto update(AddressDto addressDto) throws UserNotLoggedInException {
 
-
         String username = loginUser.getUsername();
-
-        System.out.println("@#@#@#@#@#@ Username of logged User: " + username);
+        if(username.equals("anonymousUser") || username == null){
+            throw new UserNotLoggedInException();
+        }
 
         Address address = addressMapper.mapToAddress(addressDto);
 
 
         return null; //addressMapper.mapToAddressDto(addressDao.)
     }
+
 
 
 }

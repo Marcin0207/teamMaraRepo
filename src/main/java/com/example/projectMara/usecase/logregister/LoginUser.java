@@ -24,6 +24,7 @@ public class LoginUser {
         String username;
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
+            System.out.println("@#@#@#@#@#@ Username of logged User: " + username);
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!! athorities "+((UserDetails) principal).getAuthorities());
         } else {
             username = principal.toString();

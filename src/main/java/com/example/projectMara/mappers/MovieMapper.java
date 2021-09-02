@@ -1,6 +1,7 @@
 package com.example.projectMara.mappers;
 
 import com.example.projectMara.adapter.dto.MovieDto;
+import com.example.projectMara.adapter.dto.MovieMainPageDto;
 import com.example.projectMara.domain.model.Movie;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,13 @@ public class MovieMapper {
                 .movieStatus(movie.getMovieStatus())
                 .avgRate(movie.getAvgRate())
                 .createdAt(movie.getCreatedAt())
+                .build();
+    }
+    public static MovieMainPageDto mapForMainPage(Movie movie){
+        return MovieMainPageDto.builder()
+                .title(movie.getTitle())
+                .director(movie.getDirector())
+                .movieGenre(movie.getMovieGenre())
                 .build();
     }
     public static Movie map(MovieDto movieDto){

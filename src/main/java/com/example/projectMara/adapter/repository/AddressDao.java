@@ -12,4 +12,7 @@ public interface AddressDao extends JpaRepository<Address, Integer> {
 
     Optional<Address> findByUser(User user);
 
+    void deleteById(Integer id);
+
+
 }

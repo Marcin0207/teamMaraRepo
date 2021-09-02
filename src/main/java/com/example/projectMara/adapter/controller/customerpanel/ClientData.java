@@ -8,6 +8,7 @@ import com.example.projectMara.usecase.adminpanel.ReadMovieFromCentralStore;
 import com.example.projectMara.usecase.adminpanel.exception.MovieAlreadyPresentException;
 import com.example.projectMara.usecase.clientpanel.addresservice.AddAddress;
 import com.example.projectMara.usecase.clientpanel.addresservice.ChangeAddress;
+import com.example.projectMara.usecase.clientpanel.addresservice.DeleteAddress;
 import com.example.projectMara.usecase.clientpanel.exceptions.AddressDoesNotExist;
 import com.example.projectMara.usecase.clientpanel.exceptions.MissingAddressIdException;
 import com.example.projectMara.usecase.clientpanel.exceptions.NotYourAddressException;
@@ -31,6 +32,8 @@ public class ClientData {
     private ChangeAddress changeAddress;
     @Autowired
     private AddAddress addAddress;
+    @Autowired
+    private DeleteAddress deleteAddress;
 
     @ExceptionHandler(UserNotLoggedInException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -70,5 +73,9 @@ public class ClientData {
         return this.changeAddress.update(addressDto);
     }
 
+    @DeleteMapping("{id}")
+    public List<AddressDto> deleteById(@PathVariable int id){
+        return this.deleteAddress.deleteById(id);
+    }
 
 }

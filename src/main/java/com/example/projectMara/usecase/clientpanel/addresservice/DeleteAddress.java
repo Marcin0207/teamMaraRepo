@@ -52,11 +52,6 @@ public class DeleteAddress {
         List<Address> addressList = loggedUser.getAddressList();
         addressList.removeIf(address -> address.getId()==id);
 
-
-        for (Address address: addressList) {
-            System.out.println(address.getAddressName());
-
-        }
         loggedUser.setAddressList(addressList);
         userDao.save(loggedUser);
         addressDao.deleteById(id);

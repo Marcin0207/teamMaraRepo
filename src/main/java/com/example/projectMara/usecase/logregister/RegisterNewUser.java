@@ -7,6 +7,7 @@ import com.example.projectMara.domain.model.User;
 import com.example.projectMara.mappers.UserMapper;
 import com.example.projectMara.security.exceptions.EmailExistsException;
 import com.example.projectMara.security.exceptions.NickNameExistsException;
+import com.example.projectMara.usecase.clientpanel.exceptions.PasswordDontMatchException;
 import com.example.projectMara.usecase.logregister.exception.FullNameToLongException;
 import com.example.projectMara.usecase.logregister.exception.NickNameToLongException;
 import com.example.projectMara.usecase.logregister.exception.NullFieldsException;
@@ -39,6 +40,12 @@ public class RegisterNewUser {
             throw new EmailExistsException
                     ("There is an account with that Nickname: " + userRegistrationDto.getNickName());
         }
+
+        if(userRegistrationDto.getPassword()!=null
+                && !userRegistrationDto.getPassword().equals(userRegistrationDto.getMatchingPassword())){
+            throw new PasswordDontMatchException();
+        }
+
         checkData(userRegistrationDto);
 
         User user = new User();

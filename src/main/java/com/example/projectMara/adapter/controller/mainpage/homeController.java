@@ -22,19 +22,19 @@ public class homeController {
     private final ShowMovies showMovies;
 
     @GetMapping("titles")
-    public List<MovieMainPageDto> getByTitleAlphabetical(@RequestParam MovieGenre genre) {
+    public List<MovieMainPageDto> getByTitleAlphabetical(@RequestParam (required = false)MovieGenre genre) {
         return this.showMovies.getByAlphabeticalOrder(genre);
     }
     @GetMapping("premiereDate")
-    public List<MovieMainPageDto> getByPremDate(@RequestParam MovieGenre genre) {
+    public List<MovieMainPageDto> getByPremDate(@RequestParam (required = false)MovieGenre genre) {
         return this.showMovies.getByPremiereDate(genre);
     }
-
-    public List<MovieMainPageDto> getByCreationDate(@RequestParam MovieGenre genre) {
+    @GetMapping("")
+    public List<MovieMainPageDto> getByCreationDate(@RequestParam(required = false)MovieGenre genre) {
         return this.showMovies.getByCreationDate(genre);
     }
     @GetMapping("avgRate")
-    public List<MovieMainPageDto> getByAvgRate(@RequestParam MovieGenre genre) {
+    public List<MovieMainPageDto> getByAvgRate(@RequestParam (required = false)MovieGenre genre) {
         return this.showMovies.getByAvgRate(genre);
     }
 }

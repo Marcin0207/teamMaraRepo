@@ -17,6 +17,10 @@ public class AddMovieToCentralStore {
     private final MovieDao movieDao;
 
     public MovieDto add(MovieDto movieDto) throws MovieAlreadyPresentException {
+
+
+
+
         Movie movie = MovieMapper.map(movieDto);
         if(movieDao.findByTitle(movie.getTitle()).isPresent()){
             throw new MovieAlreadyPresentException(movie.getTitle());

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,7 +33,8 @@ public class AddCopyToCentralStore {
 
         Movie movie = movieDao.findById(id).get();
 
-        List<Copy> copies = movie.getCopies();
+        List<Copy> copies = new ArrayList<>();
+        copies.addAll(movie.getCopies());
 
         for (int i = 0; i < quantity; i++) {
 
@@ -41,10 +43,9 @@ public class AddCopyToCentralStore {
             copies.add(copy);
 
         }
-
-      /*  for (Copy copy:copies){
+       /* for (Copy copy:copies){
             System.out.println(copy.getId() + " " + copy.getMovie().getTitle());
-        }*/
+        } */
         movie.setCopies(copies);
         movieDao.save(movie);
         return CopyMapper.mapList(copies);

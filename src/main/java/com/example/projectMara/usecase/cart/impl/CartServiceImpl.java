@@ -106,7 +106,7 @@ public class CartServiceImpl implements CartService {
         movies.clear();
     }
 
-    /*@Override
+    @Override
     public BigDecimal getTotal() {
         return movies.entrySet().stream()
                 .map(entry -> entry.getKey().getPrice().multiply(BigDecimal.valueOf(entry.getValue())))

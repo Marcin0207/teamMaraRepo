@@ -1,6 +1,7 @@
 package com.example.projectMara.adapter.controller;
 
 
+import com.example.projectMara.adapter.dto.MovieDto;
 import com.example.projectMara.usecase.cart.CartService;
 import com.example.projectMara.usecase.cart.MovieService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,6 @@ public class CartController {
     private final CartService cartService;
     @Autowired
     private final MovieService movieService;
-
 
 
     @GetMapping("cartO")
@@ -41,6 +41,7 @@ public class CartController {
         movieService.findById(movieId).ifPresent(cartService::removeMovie);
         return cart();
     }
+}
 
   /*  @GetMapping("/cartO/checkout")
     public ModelAndView checkout() {
@@ -53,4 +54,21 @@ public class CartController {
     }
 
    */
+
+/*
+    public MovieDto getById(@PathVariable int id){
+        return this.readMovieFromCentralStore.readById(id);
+    }
+
+    @GetMapping("cart")
+    public CartDto cart() {
+        cartService.getCartDto;
+
+
+        cartService.getMovieInCart());
+        modelAndView.addObject("total", cartService.getTotal().toString());
+        return modelAndView;
+    }
+
 }
+*/

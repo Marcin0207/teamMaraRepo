@@ -3,14 +3,18 @@ package com.example.projectMara.adapter.controller;
 
 import com.example.projectMara.usecase.cart.CartService;
 import com.example.projectMara.usecase.cart.MovieService;
+import com.example.projectMara.usecase.cart.exception.AddingMovieDuplicateException;
+import com.example.projectMara.usecase.logregister.exception.FullNameToLongException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class CartController {
@@ -20,6 +24,11 @@ public class CartController {
     @Autowired
     private final MovieService movieService;
 
+    @ExceptionHandler(AddingMovieDuplicateException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void handleAddingMovieDuplicateException(HttpServletRequest hser, Exception ex){
+        log.error(hser.getRequestURI()+ " error: "  +ex.getMessage());
+    }
 
 
     @GetMapping("cartO")

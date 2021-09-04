@@ -15,11 +15,6 @@ import org.springframework.web.context.WebApplicationContext;
 import java.math.BigDecimal;
 import java.util.*;
 
-/**
- * Shopping Cart is implemented with a Map, and as a session bean
- *
- * @author Dusan
- */
 @Service
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Transactional
@@ -34,12 +29,7 @@ public class CartServiceImpl implements CartService {
         this.movieDao = movieDao;
     }
 
-    /**
-     * If movie is in the map just increment quantity by 1.
-     * If movie is not in the map with, add it with quantity 1
-     *
-     * @param movie
-     */
+
     @Override
     public void addMovie(Movie movie) throws AddingMovieDuplicateException {
         for (Movie movie2 : movies) {
@@ -48,11 +38,7 @@ public class CartServiceImpl implements CartService {
             }
         }
             movies.add(movie);
-        /*if (movies.contains(movie)) {
-            throw new AddingMovieDuplicateException(movie.getTitle());
-        } else {
-            movies.add(movie);
-        }*/
+
             System.out.println("Koszyk:");
             for (Movie movie1 : movies) {
                 System.out.println("-" +
@@ -63,12 +49,7 @@ public class CartServiceImpl implements CartService {
 
     }
 
-    /**
-     * If movie is in the map with quantity > 1, just decrement quantity by 1.
-     * If movie is in the map with quantity 1, remove it from map
-     *
-     * @param movie
-     */
+
     @Override
     public void removeMovie(Movie movie) {
             movies.remove(movie.getId());
@@ -76,20 +57,13 @@ public class CartServiceImpl implements CartService {
     }
 
 
-    /**
-     * @return unmodifiable movie of the list
-     */
+
     @Override
     public List<Movie> getMovieInCart() {
         return Collections.unmodifiableList(movies);
     }
+
 /*
-    /**
-     * Checkout will rollback if there is not enough of some product in stock
-     *
-     * @throws com.example.projectMara.usecase.cart.exception.NotEnoughCopiesInStockException
-     */
-    /*
     @Override
     public void checkout() throws NotEnoughCopiesInStockException {
         Movie movie;

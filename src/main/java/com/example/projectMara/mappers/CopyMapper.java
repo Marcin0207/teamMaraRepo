@@ -12,15 +12,11 @@ public class CopyMapper {
     public static CopyDto map(Copy copy){
         return CopyDto.builder()
                 .id(copy.getId())
-                .movie(copy.getMovie())
+                .movieId(copy.getMovie().getId())
+                .movieTitle(copy.getMovie().getTitle())
                 .build();
     }
-public static Copy map(CopyDto copyDto){
-    return Copy.builder()
-            .id(copyDto.getId())
-            .movie(copyDto.getMovie())
-            .build();
-}
+
 
 public static List<CopyDto> mapList(List<Copy> copyList){
         List<CopyDto> copyDtoList = copyList.stream()

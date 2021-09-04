@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class CopyDto {
 
     private int id;
-    private Movie movie;
+    private int movieId;
+    private String movieTitle;
 
 }

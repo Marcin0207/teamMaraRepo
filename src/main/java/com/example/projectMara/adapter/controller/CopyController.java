@@ -23,8 +23,8 @@ public class CopyController {
     @Autowired
     private AddCopyToCentralStore addCopyToCentralStore;
 
-    @GetMapping("addCopy{id}")
-    public CopyDto getById(@PathVariable int id, @RequestParam int quantity){
+    @PostMapping("addCopy/{id}")
+    public List<CopyDto> getById(@PathVariable int id, @RequestParam int quantity){
         return this.addCopyToCentralStore.add (id, quantity);
     }
 

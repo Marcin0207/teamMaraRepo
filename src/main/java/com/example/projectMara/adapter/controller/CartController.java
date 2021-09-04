@@ -1,6 +1,7 @@
 package com.example.projectMara.adapter.controller;
 
 
+import com.example.projectMara.adapter.dto.MovieDto;
 import com.example.projectMara.usecase.cart.CartService;
 import com.example.projectMara.usecase.cart.MovieService;
 import com.example.projectMara.usecase.cart.exception.AddingMovieDuplicateException;
@@ -30,7 +31,6 @@ public class CartController {
         log.error(hser.getRequestURI()+ " error: "  +ex.getMessage());
     }
 
-
     @GetMapping("cartO")
     public ModelAndView cart() {
         ModelAndView modelAndView = new ModelAndView("/cartO");
@@ -50,6 +50,7 @@ public class CartController {
         movieService.findById(movieId).ifPresent(cartService::removeMovie);
         return cart();
     }
+}
 
   /*  @GetMapping("/cartO/checkout")
     public ModelAndView checkout() {
@@ -62,4 +63,21 @@ public class CartController {
     }
 
    */
+
+/*
+    public MovieDto getById(@PathVariable int id){
+        return this.readMovieFromCentralStore.readById(id);
+    }
+
+    @GetMapping("cart")
+    public CartDto cart() {
+        cartService.getCartDto;
+
+
+        cartService.getMovieInCart());
+        modelAndView.addObject("total", cartService.getTotal().toString());
+        return modelAndView;
+    }
+
 }
+*/

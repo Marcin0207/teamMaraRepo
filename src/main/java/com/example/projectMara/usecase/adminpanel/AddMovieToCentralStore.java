@@ -8,10 +8,12 @@ import com.example.projectMara.usecase.adminpanel.exception.MovieAlreadyPresentE
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AddMovieToCentralStore {
 
     private final MovieDao movieDao;

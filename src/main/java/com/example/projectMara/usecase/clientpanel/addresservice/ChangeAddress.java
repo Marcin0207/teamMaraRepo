@@ -35,7 +35,7 @@ public class ChangeAddress {
     private final LoginUser loginUser;
 
     public List<AddressDto> update(AddressDto addressDto)
-            throws UserNotLoggedInException, MissingAddressIdException, MissingAddressIdException{
+            throws UserNotLoggedInException, MissingAddressIdException, NotYourAddressException{
 
         String username = loginUser.getUsername();
         if (username.equals("anonymousUser") || username == null) {

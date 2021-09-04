@@ -31,7 +31,8 @@ public class AddAddress {
     private final AddressMapper addressMapper;
     private final LoginUser loginUser;
 
-    public List<AddressDto> add(AddressDto addressDto) throws UserNotLoggedInException {
+    public List<AddressDto> add(AddressDto addressDto)
+            throws UserNotLoggedInException, NullFieldsInAddressException, AddressNameToLongException  {
 
         String username = loginUser.getUsername();
         if (username.equals("anonymousUser") || username == null) {

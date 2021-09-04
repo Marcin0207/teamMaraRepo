@@ -1,5 +1,7 @@
 package com.example.projectMara.adapter.controller;
 
+import com.example.projectMara.adapter.dto.CartDto;
+import com.example.projectMara.adapter.dto.MiniCartDto;
 import com.example.projectMara.adapter.dto.MovieDto;
 import com.example.projectMara.usecase.adminpanel.AddMovieToCentralStore;
 import com.example.projectMara.usecase.adminpanel.ReadMovieFromCentralStore;

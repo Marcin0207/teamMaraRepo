@@ -12,17 +12,26 @@ import com.example.projectMara.usecase.adminpanel.exception.MovieAlreadyPresentE
 import com.example.projectMara.usecase.adminpanel.exception.MovieIdDoesntExsistException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class AddCopyToCentralStore {
-    private final CopyDao copyDao;
+    private final MovieDao movieDao;
 
-    public CopyDto add(CopyDto copyDto) throws MovieIdDoesntExsistException {
+    public CopyDto add(int id, int quantity) throws MovieIdDoesntExsistException {
 
-        Copy copy = CopyMapper.map(copyDto);
-        if(copyDao.existsById(movie.getId()){
-            throw new MovieIdDoesntExsistException(movie.getId());
-        } else {
-            movie.setCreatedAt(LocalDateTime.now());
-            return MovieMapper.map(movieDao.save(movie));
+
+        if(!movieDao.existsById(id))
+        {
+            throw new MovieIdDoesntExsistException(id);
         }
+
+         Movie movie = movieDao.findById(id).get();
+
+         List<Copy> copies  = movie.getCopies();
+         copies.add(1,)
+                 for (int i = 1, )
+
+
+
+
 }

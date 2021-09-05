@@ -9,7 +9,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Component
@@ -19,15 +21,18 @@ public class SetMovieStatus {
     private final MovieDao movieDao;
 
     @Async
-    @Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "0 00 00 * * ?")
     public void setStatus() {
         System.out.println("############## Scheduled");
 
-        int daysBetween;
+        long daysBetween;
+
 
         List<Movie> movieList = movieDao.findAll();
         for (Movie movie : movieList) {
-            daysBetween = (int) Duration.between(movie.getPremiereDate(), LocalDateTime.now()).toDays();
+
+
+            daysBetween = ChronoUnit.DAYS.between(movie.getPremiereDate(), LocalDate.now());
 
             movie.setMovieStatus(getStatusFromDays(daysBetween));
             movieDao.save(movie);
@@ -36,7 +41,7 @@ public class SetMovieStatus {
 
     }
 
-    private MovieStatus getStatusFromDays(int daysBetween) {
+    private MovieStatus getStatusFromDays(long daysBetween) {
 
         MovieStatus status = MovieStatus.STANDARD;
 

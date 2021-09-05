@@ -16,7 +16,7 @@ INSERT INTO ORDERS (CREATED_AT,DELIVERY_DATE,ORDER_STATUS,PRICE,USER_ID) VALUES
     ('2021-05-22 16:03:25','2021-05-25 08:12:38','DELIVERED','20',3);
 
 INSERT INTO MOVIES (AVG_RATE,DESCRIPTION,DIRECTOR,MOVIE_GENRE,PREMIERE_DATE,TITLE,MOVIE_STATUS,CREATED_AT) VALUES
-  ('9.3','Niepełnosprawny weteran wciela się w obce ciało by poderwać niebieską kosmitkę','James Cameron','SCI_FI','2009-12-25','Avatar','CLASSIC', '2000-04-11 09:31:15'),
+  ('9.3','Niepełnosprawny weteran wciela się w obce ciało by poderwać niebieską kosmitkę','James Cameron','SCI_FI','2020-12-25','Avatar','CLASSIC', '2000-04-11 09:31:15'),
   ('7.8','Duch z depresją nawiedza dzieciaka swoimi problemami małrzeńskimi','M. Night Shaymalan','THRILLER','2000-01-14','Szósty zmysł','CLASSIC','2000-04-11 09:31:15'),
   ('6.7','Były pastor przetrzymuje w piwnicy imigranta cierpiącego na wodostręt','M. Night Shaymalan','THRILLER','2002-11-08','Znaki','CLASSIC','2000-04-11 09:31:15');
 

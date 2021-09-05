@@ -15,9 +15,7 @@ public class PriceService {
 
     public BigDecimal priceOfStatus (MovieStatus movieStatus){
 
-
         BigDecimal moviePrice;
-
 
         switch (movieStatus){
             case CLASSIC:
@@ -33,6 +31,24 @@ public class PriceService {
                 moviePrice = price.getStandardPrice();
         }
        return moviePrice;
+    }
+    public BigDecimal getDiscount(BigDecimal totalPrice, ClientType clientType){
+    BigDecimal discountedPrice = totalPrice;
+
+        switch (clientType){
+            case SILVER:
+                discountedPrice = totalPrice.multiply(price.getSilverDiscount());
+                break;
+            case GOLD:
+                discountedPrice = totalPrice.multiply(price.getGoldDiscount());
+                break;
+            case PLATINUM:
+                discountedPrice = totalPrice.multiply(price.getPlatinumDiscount());
+                break;
+            default:
+                discountedPrice = totalPrice;
+        }
+        return discountedPrice;
     }
 
 }

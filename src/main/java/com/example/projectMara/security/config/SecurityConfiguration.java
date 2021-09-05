@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().antMatchers("/register/**").permitAll().and()
                 .authorizeRequests().antMatchers("/catalogue/movie/add").hasAuthority("ROLE_ADMIN").and()
                 .authorizeRequests().antMatchers("/catalogue/movie/get").authenticated().and()
-                .authorizeRequests().antMatchers("/cart").authenticated().and()
+                .authorizeRequests().antMatchers("/cart").permitAll().and()
                 .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));

@@ -1,11 +1,13 @@
 package com.example.projectMara.adapter.controller;
 
 
+import com.example.projectMara.adapter.dto.CartDto;
 import com.example.projectMara.adapter.dto.MiniCartDto;
 import com.example.projectMara.adapter.dto.MovieDto;
 import com.example.projectMara.usecase.cart.CartService;
 import com.example.projectMara.usecase.cart.MovieService;
 import com.example.projectMara.usecase.cart.exception.AddingMovieDuplicateException;
+import com.example.projectMara.usecase.cart.exception.MovieNotInCartException;
 import com.example.projectMara.usecase.logregister.exception.FullNameToLongException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,12 @@ public class CartController {
     @Autowired
     private final MovieService movieService;
 
+    @ExceptionHandler(MovieNotInCartException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void handleMovieNotInCartException(HttpServletRequest hser, Exception ex){
+        log.error(hser.getRequestURI()+ " error: "  +ex.getMessage());
+
+    }
     @ExceptionHandler(AddingMovieDuplicateException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handleAddingMovieDuplicateException(HttpServletRequest hser, Exception ex){
@@ -38,10 +46,17 @@ public class CartController {
     public MiniCartDto addToCart(@PathVariable int id) {
         return this.cartService.addMovie(id);
     }
+
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @PostMapping("cart/removeFromCart/{id}")
+    @DeleteMapping("cart/removeFromCart/{id}")
     public MiniCartDto removeFromCart(@PathVariable int id) {
         return this.cartService.removeMovie(id);
+    }
+
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @GetMapping("cart")
+    public CartDto removeFromCart() {
+        return this.cartService.showCart();
     }
 //    @GetMapping("cartO")
 //    public ModelAndView cart() {

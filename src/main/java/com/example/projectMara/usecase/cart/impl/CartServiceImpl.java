@@ -1,14 +1,19 @@
 package com.example.projectMara.usecase.cart.impl;
 
+import com.example.projectMara.adapter.dto.CartDto;
 import com.example.projectMara.adapter.dto.MiniCartDto;
+import com.example.projectMara.adapter.dto.SingleMovieCartData;
 import com.example.projectMara.adapter.repository.MovieDao;
+import com.example.projectMara.adapter.repository.UserDao;
+import com.example.projectMara.domain.model.ClientType;
 import com.example.projectMara.domain.model.Movie;
 import com.example.projectMara.domain.model.PriceService;
 import com.example.projectMara.usecase.adminpanel.exception.MovieIdDoesntExsistException;
 import com.example.projectMara.usecase.cart.CartService;
 import com.example.projectMara.usecase.cart.exception.AddingMovieDuplicateException;
 import com.example.projectMara.usecase.cart.exception.MovieNotInCartException;
-import com.example.projectMara.usecase.cart.exception.NotEnoughCopiesInStockException;
+import com.example.projectMara.usecase.clientpanel.exceptions.UserNotLoggedInException;
+import com.example.projectMara.usecase.logregister.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -17,7 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,18 +33,23 @@ import java.util.stream.Collectors;
 public class CartServiceImpl implements CartService {
 
     private final MovieDao movieDao;
+    private final UserDao userDao;
     private final PriceService priceService;
+    private final LoginUser loginUser;
+
 
     private List<Movie> movies = new ArrayList<>();
 
+    BigDecimal totalPrice;
+    BigDecimal totalDiscountedPrice = BigDecimal.valueOf(0);
+
     @Autowired
-    public CartServiceImpl(MovieDao movieDao, PriceService priceService) {
+    public CartServiceImpl(MovieDao movieDao, PriceService priceService, LoginUser loginUser, UserDao userDao) {
         this.movieDao = movieDao;
         this.priceService = priceService;
+        this.loginUser = loginUser;
+        this.userDao = userDao;
     }
-
-
-
 
 
     @Override
@@ -52,21 +64,21 @@ public class CartServiceImpl implements CartService {
                 throw new AddingMovieDuplicateException(movie.getTitle());
             }
         }
-            movies.add(movie);
+        movies.add(movie);
 
-            System.out.println("Koszyk:");
-            for (Movie movie1 : movies) {
-                System.out.println("-" +
-                        movie1.getTitle()
-                );
+        System.out.println("Koszyk:");
+        for (Movie movie1 : movies) {
+            System.out.println("-" +
+                    movie1.getTitle()
+            );
 
-            }
+        }
 
-            MiniCartDto miniCartDto = new MiniCartDto();
-            miniCartDto.setMovieTitle(movie.getTitle());
-            miniCartDto.setMoviePricePerDay(priceService.priceOfStatus(movie.getMovieStatus()));
+        MiniCartDto miniCartDto = new MiniCartDto();
+        miniCartDto.setMovieTitle(movie.getTitle());
+        miniCartDto.setMoviePricePerDay(priceService.priceOfStatus(movie.getMovieStatus()));
 
-            return miniCartDto;
+        return miniCartDto;
     }
 
 
@@ -80,10 +92,10 @@ public class CartServiceImpl implements CartService {
 
         List<Movie> movieWithId = movies.stream().filter(m -> m.getId() == id).collect(Collectors.toList());
 
-        if (movieWithId.isEmpty()){
+        if (movieWithId.isEmpty()) {
             throw new MovieNotInCartException(movie.getTitle());
         }
-            movies.removeIf(m ->m.getId() == id);
+        movies.removeIf(m -> m.getId() == id);
 
         System.out.println("Koszyk:");
         for (Movie movie1 : movies) {
@@ -99,6 +111,39 @@ public class CartServiceImpl implements CartService {
         return miniCartDto;
     }
 
+    @Override
+    public CartDto showCart() {
+
+        totalPrice = BigDecimal.valueOf(0);
+        CartDto cartDto = new CartDto();
+        List<SingleMovieCartData> singleMovieCartDataList = new ArrayList<>();
+
+        for (Movie movie : movies) {
+
+            BigDecimal moviePrice = priceService.priceOfStatus(movie.getMovieStatus());
+            totalPrice = totalPrice.add(moviePrice);
+
+            SingleMovieCartData singleMovieCartData =
+                    new SingleMovieCartData(movie.getTitle(),
+                            movie.getDescription(), moviePrice
+                    );
+
+            singleMovieCartDataList.add(singleMovieCartData);
+
+        }
+        cartDto.setSingleMovieCartData(singleMovieCartDataList);
+
+        String username = loginUser.getUsername();
+        if (username.equals("anonymousUser") || username == null) {
+            cartDto.setTotalPricePerDay(totalPrice);
+        } else {
+            ClientType clientType = userDao.findByNickName(username).getClientType();
+            totalDiscountedPrice = priceService.getDiscount(totalPrice,clientType);
+            cartDto.setTotalPricePerDay(totalDiscountedPrice);
+        }
+
+        return cartDto;
+    }
 
 
     @Override

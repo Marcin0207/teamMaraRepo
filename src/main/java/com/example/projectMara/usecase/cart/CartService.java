@@ -1,5 +1,6 @@
 package com.example.projectMara.usecase.cart;
 
+import com.example.projectMara.adapter.dto.CartDto;
 import com.example.projectMara.adapter.dto.MiniCartDto;
 import com.example.projectMara.domain.model.Copy;
 import com.example.projectMara.domain.model.Movie;
@@ -14,6 +15,7 @@ public interface CartService {
 
     MiniCartDto removeMovie(int idMovie);
     MiniCartDto addMovie(int idMovie);
+    CartDto showCart();
 
     List<Movie> getMovieInCart() throws AddingMovieDuplicateException;
 

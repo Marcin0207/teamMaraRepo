@@ -7,4 +7,5 @@ public enum MovieStatus {
     STANDARD,
     CLASSIC;
 
+
 }
